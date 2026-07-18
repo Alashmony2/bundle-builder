@@ -1,8 +1,10 @@
+import Home from "./pages/Home.jsx"
+
 function App() {
 
   return (
     <>
-      <h1 className="text-3xl underline font-bold capitalize">bundle builder</h1>
+      <Home/>
     </>
   )
 }
