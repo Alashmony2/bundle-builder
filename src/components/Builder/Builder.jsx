@@ -24,7 +24,7 @@ const PLACEHOLDER_CONTENT = [
 
 export default function Builder() {
   return (
-    <section className="w-full max-w-[1213px]">
+    <section className="w-full min-w-0 flex-1 max-w-[1213px]">
       <Accordion defaultOpenIndex={0}>
         {BUILDER_STEPS.map((step, index) => (
           <AccordionItem
