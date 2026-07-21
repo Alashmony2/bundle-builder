@@ -1,20 +1,22 @@
+import useBuilder from '../../hooks/useBuilder'
 export default function ProductCard({
+  id,
   name,
   description,
   image,
   savePercent,
-  selected = false,
   quantity = 0,
   price,
   originalPrice,
   colors = [],
   activeColor = 0,
 }) {
+  const { increaseQuantity, decreaseQuantity } = useBuilder()
+
   return (
     <article
-      className={`flex flex-col rounded-xl border-2 bg-white p-4 ${
-        selected ? 'border-[#1a98ff]' : 'border-slate-200'
-      }`}
+      className={`flex flex-col rounded-xl border-2 bg-white p-4 ${quantity > 0 ? 'border-[#1a98ff]' : 'border-slate-200'
+        }`}
     >
       {savePercent > 0 && (
         <span className="mb-3 inline-flex w-fit rounded-full bg-[#7c3aed] px-2.5 py-0.5 text-[11px] font-semibold text-white">
@@ -40,11 +42,10 @@ export default function ProductCard({
           {colors.map((color, colorIndex) => (
             <span
               key={color.label}
-              className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-medium ${
-                colorIndex === activeColor
-                  ? 'border-[#1a98ff] bg-[#1a98ff]/5 text-slate-800'
-                  : 'border-slate-200 text-slate-600'
-              }`}
+              className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-medium ${colorIndex === activeColor
+                ? 'border-[#1a98ff] bg-[#1a98ff]/5 text-slate-800'
+                : 'border-slate-200 text-slate-600'
+                }`}
             >
               <span
                 className="h-3 w-3 rounded-full border border-slate-300"
@@ -62,15 +63,25 @@ export default function ProductCard({
           className="inline-flex items-center rounded-full border border-slate-200 bg-white"
           aria-hidden
         >
-          <span className="flex h-8 w-8 items-center justify-center text-slate-400">
+          <button
+            onClick={() => decreaseQuantity(id)}
+            disabled={quantity === 0}
+            className={`flex h-8 w-8 items-center justify-center ${quantity === 0
+                ? 'cursor-not-allowed text-slate-300'
+                : 'text-slate-800'
+              }`}
+          >
             −
-          </span>
+          </button>
           <span className="flex h-8 min-w-8 items-center justify-center px-1 text-sm font-semibold text-slate-800">
             {quantity}
           </span>
-          <span className="flex h-8 w-8 items-center justify-center text-slate-800">
+          <button
+            onClick={() => increaseQuantity(id)}
+            className="flex h-8 w-8 items-center justify-center text-slate-800"
+          >
             +
-          </span>
+          </button>
         </div>
 
         <div className="text-right">
