@@ -6,7 +6,8 @@ import {
 } from 'react-icons/hi2'
 import { Accordion, AccordionItem } from '../Accordion'
 import ProductCard from './ProductCard'
-import { BUILDER_STEPS, CAMERA_PRODUCTS } from '../../data/builderData'
+import useBuilder from '../../hooks/useBuilder'
+import { BUILDER_STEPS } from '../../data/builderData.js'
 
 const STEP_ICONS = [
   HiOutlineCamera,
@@ -23,6 +24,8 @@ const PLACEHOLDER_CONTENT = [
 ]
 
 export default function Builder() {
+  const { products } = useBuilder()
+
   return (
     <section className="w-full min-w-0 flex-1 max-w-[1213px]">
       <Accordion defaultOpenIndex={0}>
@@ -39,7 +42,7 @@ export default function Builder() {
           >
             {index === 0 ? (
               <div className="grid grid-cols-1 gap-[13px] sm:grid-cols-2 xl:grid-cols-4">
-                {CAMERA_PRODUCTS.map((product) => (
+                {products.map((product) => (
                   <ProductCard key={product.id} {...product} />
                 ))}
               </div>
