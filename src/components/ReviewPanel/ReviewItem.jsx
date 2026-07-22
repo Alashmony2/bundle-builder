@@ -1,8 +1,10 @@
 import QuantityStepper from './QuantityStepper'
 import ReviewItemIcon from './ReviewItemIcon'
 import ReviewItemPrice from './ReviewItemPrice'
+import useBuilder from '../../hooks/useBuilder'
 
 export default function ReviewItem({
+  id,
   name,
   subtitle,
   image,
@@ -15,6 +17,7 @@ export default function ReviewItem({
 }) {
   const showStepper = typeof quantity === 'number'
   const highlightPrice = Boolean(priceLabel)
+  const { increaseQuantity, decreaseQuantity } = useBuilder()
 
   return (
     <div className="flex items-center gap-3 py-2">
@@ -34,7 +37,11 @@ export default function ReviewItem({
         </p>
       </div>
 
-      {showStepper && <QuantityStepper quantity={quantity} />}
+      {showStepper && <QuantityStepper
+        quantity={quantity}
+        onIncrease={() => increaseQuantity(id)}
+        onDecrease={() => decreaseQuantity(id)}
+      />}
 
       <ReviewItemPrice
         price={price}

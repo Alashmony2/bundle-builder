@@ -23,7 +23,7 @@ export default function ProductCard({
           Save {savePercent}%
         </span>
       )}
-      {savePercent === 0 && <span className="mb-3 h-[22px]" aria-hidden />}
+      {savePercent === 0 && <span className="mb-3 h-[22px]"  />}
 
       <div className="mb-4 flex flex-1 items-center justify-center px-2">
         <img src={image} alt={name} className="h-28 w-auto object-contain" />
@@ -50,7 +50,7 @@ export default function ProductCard({
               <span
                 className="h-3 w-3 rounded-full border border-slate-300"
                 style={{ backgroundColor: color.hex }}
-                aria-hidden
+                
               />
               {color.label}
             </span>
@@ -61,7 +61,7 @@ export default function ProductCard({
       <div className="mt-auto flex items-center justify-between gap-2 border-t border-slate-100 pt-4">
         <div
           className="inline-flex items-center rounded-full border border-slate-200 bg-white"
-          aria-hidden
+          
         >
           <button
             onClick={() => decreaseQuantity(id)}
