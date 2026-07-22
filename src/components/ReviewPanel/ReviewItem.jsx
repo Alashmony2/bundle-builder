@@ -5,6 +5,7 @@ import useBuilder from '../../hooks/useBuilder'
 
 export default function ReviewItem({
   id,
+  colorIndex,
   name,
   subtitle,
   image,
@@ -39,8 +40,8 @@ export default function ReviewItem({
 
       {showStepper && <QuantityStepper
         quantity={quantity}
-        onIncrease={() => increaseQuantity(id)}
-        onDecrease={() => decreaseQuantity(id)}
+        onIncrease={() => increaseQuantity(id, colorIndex)}
+        onDecrease={() => decreaseQuantity(id, colorIndex)}
       />}
 
       <ReviewItemPrice

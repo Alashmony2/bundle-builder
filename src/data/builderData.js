@@ -11,75 +11,85 @@ export const CAMERA_PRODUCTS = [
     description: '1080p HD video, Color Night Vision, Indoor/Outdoor IP65.',
     image: wyzeV4,
     savePercent: 23,
-    selected: true,
-    quantity: 2,
     price: '23.33',
     originalPrice: '39.99',
-    colors: [
-      { label: 'White', hex: '#f5f5f5' },
-      { label: 'Grey', hex: '#9ca3af' },
-      { label: 'Black', hex: '#1f2937' },
-    ],
     activeColor: 0,
+    colors: [
+      {
+        label: 'White',
+        hex: '#f5f5f5',
+        quantity: 2,
+      },
+      {
+        label: 'Grey',
+        hex: '#9ca3af',
+        quantity: 0,
+      },
+      {
+        label: 'Black',
+        hex: '#1f2937',
+        quantity: 0,
+      },
+    ],
   },
+
   {
     id: 'wyze-v3',
     name: 'Wyze Cam v3',
     description: '1080p HD video, Color Night Vision, Indoor/Outdoor IP65.',
     image: wyzeV3,
     savePercent: 26,
-    selected: true,
-    quantity: 1,
     price: '21.13',
     originalPrice: '35.99',
-    colors: [
-      { label: 'White', hex: '#f5f5f5' },
-      { label: 'Black', hex: '#1f2937' },
-    ],
     activeColor: 0,
+    colors: [
+      {
+        label: 'White',
+        hex: '#f5f5f5',
+        quantity: 1,
+      },
+      {
+        label: 'Black',
+        hex: '#1f2937',
+        quantity: 0,
+      },
+    ],
   },
+
   {
     id: 'wyze-v2',
     name: 'Wyze Cam v2',
     description: '1080p HD video, Color Night Vision, Indoor/Outdoor IP65.',
     image: wyzeV2,
     savePercent: 0,
-    selected: false,
     quantity: 0,
     price: '19.99',
     colors: [],
   },
+
   {
-    id: 'wyze-Duo',
+    id: 'wyze-duo',
     name: 'Wyze Cam Duo',
     description: '1080p HD video, Color Night Vision, Indoor/Outdoor IP65.',
     image: wyzeDuo,
     savePercent: 13,
-    selected: false,
     quantity: 0,
     price: '49.99',
     originalPrice: '59.99',
-    colors: [
-      { label: 'White', hex: '#f5f5f5' },
-      { label: 'Black', hex: '#1f2937' },
-    ],
+    colors: [],
   },
+
   {
-    id: 'wyze-Battery',
+    id: 'wyze-battery',
     name: 'Wyze Battery Cam Pro',
     description: '1080p HD video, Color Night Vision, Indoor/Outdoor IP65.',
     image: wyzeBattery,
     savePercent: 13,
-    selected: false,
     quantity: 0,
     price: '49.99',
     originalPrice: '59.99',
-    colors: [
-      { label: 'White', hex: '#f5f5f5' },
-      { label: 'Black', hex: '#1f2937' },
-    ],
+    colors: [],
   },
-  
 ]
 
 export const BUILDER_STEPS = [

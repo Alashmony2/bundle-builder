@@ -15,17 +15,43 @@ export default function ReviewPanel() {
     id: 'cameras',
     label: 'Cameras',
     items: products
-      .filter((product) => product.quantity > 0)
-      .map((product) => ({
-        id: product.id,
-        name: product.name,
-        image: product.image,
-        quantity: product.quantity,
-        price: (Number(product.price) * product.quantity).toFixed(2),
-        originalPrice: product.originalPrice
-          ? (Number(product.originalPrice) * product.quantity).toFixed(2)
-          : null,
-      })),
+      .filter((product) => {
+        if (product.colors.length > 0) {
+          return product.colors.some((color) => color.quantity > 0)
+        }
+
+        return product.quantity > 0
+      })
+      .flatMap((product) => {
+        if (product.colors.length > 0) {
+          return product.colors
+            .map((color, index) => ({ color, index }))
+            .filter(({ color }) => color.quantity > 0)
+            .map(({ color, index }) => ({
+              id: product.id,
+              colorIndex: index,
+              name: product.name,
+              subtitle: color.label,
+              image: product.image,
+              quantity: color.quantity,
+              price: (Number(product.price) * color.quantity).toFixed(2),
+              originalPrice: product.originalPrice
+                ? (Number(product.originalPrice) * color.quantity).toFixed(2)
+                : null,
+            }))
+        }
+
+        return {
+          id: product.id,
+          name: product.name,
+          image: product.image,
+          quantity: product.quantity,
+          price: (Number(product.price) * product.quantity).toFixed(2),
+          originalPrice: product.originalPrice
+            ? (Number(product.originalPrice) * product.quantity).toFixed(2)
+            : null,
+        }
+      }),
   }
   return (
     <section className="w-full rounded-[10px] border border-[#c8d9eb] bg-[#edf4ff] p-[15px] lg:w-[399px] lg:shrink-0 lg:sticky lg:top-8 lg:self-start">

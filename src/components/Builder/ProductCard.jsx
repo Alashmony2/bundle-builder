@@ -12,10 +12,14 @@ export default function ProductCard({
   activeColor = 0,
 }) {
   const { increaseQuantity, decreaseQuantity } = useBuilder()
+  const currentQuantity =
+  colors.length > 0
+    ? colors[activeColor].quantity
+    : quantity
 
   return (
     <article
-      className={`flex flex-col rounded-xl border-2 bg-white p-4 ${quantity > 0 ? 'border-[#1a98ff]' : 'border-slate-200'
+      className={`flex flex-col rounded-xl border-2 bg-white p-4 ${currentQuantity > 0 ? 'border-[#1a98ff]' : 'border-slate-200'
         }`}
     >
       {savePercent > 0 && (
@@ -64,9 +68,9 @@ export default function ProductCard({
           
         >
           <button
-            onClick={() => decreaseQuantity(id)}
-            disabled={quantity === 0}
-            className={`flex h-8 w-8 items-center justify-center ${quantity === 0
+            onClick={() => decreaseQuantity(id, activeColor)}
+            disabled={currentQuantity === 0}
+            className={`flex h-8 w-8 items-center justify-center ${currentQuantity === 0
                 ? 'cursor-not-allowed text-slate-300'
                 : 'text-slate-800'
               }`}
@@ -74,10 +78,10 @@ export default function ProductCard({
             −
           </button>
           <span className="flex h-8 min-w-8 items-center justify-center px-1 text-sm font-semibold text-slate-800">
-            {quantity}
+            {currentQuantity}
           </span>
           <button
-            onClick={() => increaseQuantity(id)}
+            onClick={() => increaseQuantity(id, activeColor)}
             className="flex h-8 w-8 items-center justify-center text-slate-800"
           >
             +
