@@ -7,8 +7,26 @@ import {
 import ReviewCategory from './ReviewCategory'
 import ReviewItem from './ReviewItem'
 import SummarySection from './SummarySection'
+import useBuilder from '../../hooks/useBuilder'
 
 export default function ReviewPanel() {
+  const { products } = useBuilder()
+  const cameraCategory = {
+    id: 'cameras',
+    label: 'Cameras',
+    items: products
+      .filter((product) => product.quantity > 0)
+      .map((product) => ({
+        id: product.id,
+        name: product.name,
+        image: product.image,
+        quantity: product.quantity,
+        price: (Number(product.price) * product.quantity).toFixed(2),
+        originalPrice: product.originalPrice
+          ? (Number(product.originalPrice) * product.quantity).toFixed(2)
+          : null,
+      })),
+  }
   return (
     <section className="w-full rounded-[10px] border border-[#c8d9eb] bg-[#edf4ff] p-[15px] lg:w-[399px] lg:shrink-0 lg:sticky lg:top-8 lg:self-start">
       <div className="flex flex-col gap-20 md:flex-row lg:flex-col">
@@ -28,13 +46,15 @@ export default function ReviewPanel() {
             </p>
           </header>
 
-          {REVIEW_CATEGORIES.map((category) => (
-            <ReviewCategory
-              key={category.id}
-              label={category.label}
-              items={category.items}
-            />
-          ))}
+          {[cameraCategory, ...REVIEW_CATEGORIES.filter(c => c.id !== 'cameras')].map(
+            (category) => (
+              <ReviewCategory
+                key={category.id}
+                label={category.label}
+                items={category.items}
+              />
+            )
+          )}
 
           <div className="border-t border-[#d6e4f5] pt-2">
             <ReviewItem {...REVIEW_SHIPPING} variant="shipping" />
