@@ -24,7 +24,7 @@ const PLACEHOLDER_CONTENT = [
 ]
 
 export default function Builder() {
-  const { products } = useBuilder()
+  const { products, selectedCameraCount } = useBuilder()
 
   return (
     <section className="w-full min-w-0 flex-1 max-w-[1213px]">
@@ -37,7 +37,7 @@ export default function Builder() {
             totalSteps={BUILDER_STEPS.length}
             icon={STEP_ICONS[index]}
             title={step.title}
-            status={index === 0 ? '2 selected' : undefined}
+            status={index === 0 ? `${selectedCameraCount} selected` : undefined}
             nextLabel={step.nextLabel}
           >
             {index === 0 ? (

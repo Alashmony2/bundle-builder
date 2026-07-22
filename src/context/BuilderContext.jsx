@@ -31,10 +31,16 @@ export default function BuilderProvider({ children }) {
       )
     )
   }
+
+  const selectedCameraCount = products.filter(
+    (product) => product.quantity > 0
+  ).length
+  
   const value = {
     products,
     increaseQuantity,
     decreaseQuantity,
+    selectedCameraCount,
   }
 
   return (
