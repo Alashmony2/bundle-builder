@@ -88,13 +88,47 @@ export default function BuilderProvider({ children }) {
     (product) => getProductQuantity(product) > 0
   ).length
 
+  const summary = products.reduce(
+    (acc, product) => {
+      let quantity = 0
+
+      if (product.colors.length > 0) {
+        quantity = product.colors.reduce(
+          (total, color) => total + color.quantity,
+          0
+        )
+      } else {
+        quantity = product.quantity
+      }
+
+      if (quantity === 0) return acc
+
+      acc.total += Number(product.price) * quantity
+
+      if (product.originalPrice) {
+        acc.originalTotal += Number(product.originalPrice) * quantity
+      } else {
+        acc.originalTotal += Number(product.price) * quantity
+      }
+
+      return acc
+    },
+    {
+      total: 0,
+      originalTotal: 0,
+    }
+  )
+
+  summary.savings = summary.originalTotal - summary.total
+
   const value = {
     products,
     increaseQuantity,
     decreaseQuantity,
     changeActiveColor,
     selectedCameraCount,
-  }
+    summary,
+  }  
 
   return (
     <BuilderContext.Provider value={value}>

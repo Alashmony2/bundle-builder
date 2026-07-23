@@ -10,7 +10,7 @@ import SummarySection from './SummarySection'
 import useBuilder from '../../hooks/useBuilder'
 
 export default function ReviewPanel() {
-  const { products } = useBuilder()
+  const { products, summary } = useBuilder()
   const cameraCategory = {
     id: 'cameras',
     label: 'Cameras',
@@ -89,7 +89,15 @@ export default function ReviewPanel() {
 
         {/* Right Section */}
         <div className="w-full md:w-[300px] md:shrink-0 lg:w-full">
-          <SummarySection {...REVIEW_SUMMARY} />
+          <SummarySection
+            returnsText={REVIEW_SUMMARY.returnsText}
+            financingLabel={REVIEW_SUMMARY.financingLabel}
+            originalTotal={summary.originalTotal.toFixed(2)}
+            total={summary.total.toFixed(2)}
+            savingsMessage={`Congrats! You're saving $${summary.savings.toFixed(
+              2
+            )} on your security bundle!`}
+          />
         </div>
       </div>
     </section>
