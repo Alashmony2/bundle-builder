@@ -61,24 +61,38 @@ export default function BuilderProvider({ children }) {
   }
 
   const getProductQuantity = (product) => {
-  if (product.colors.length > 0) {
-    return product.colors.reduce(
-      (total, color) => total + color.quantity,
-      0
+    if (product.colors.length > 0) {
+      return product.colors.reduce(
+        (total, color) => total + color.quantity,
+        0
+      )
+    }
+
+    return product.quantity
+  }
+
+  const changeActiveColor = (id, colorIndex) => {
+    setProducts((prev) =>
+      prev.map((product) =>
+        product.id === id
+          ? {
+            ...product,
+            activeColor: colorIndex,
+          }
+          : product
+      )
     )
   }
 
-  return product.quantity
-}
-
-const selectedCameraCount = products.filter(
-  (product) => getProductQuantity(product) > 0
-).length
+  const selectedCameraCount = products.filter(
+    (product) => getProductQuantity(product) > 0
+  ).length
 
   const value = {
     products,
     increaseQuantity,
     decreaseQuantity,
+    changeActiveColor,
     selectedCameraCount,
   }
 

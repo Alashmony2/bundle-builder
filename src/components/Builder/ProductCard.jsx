@@ -11,11 +11,11 @@ export default function ProductCard({
   colors = [],
   activeColor = 0,
 }) {
-  const { increaseQuantity, decreaseQuantity } = useBuilder()
+  const { increaseQuantity, decreaseQuantity, changeActiveColor } = useBuilder()
   const currentQuantity =
-  colors.length > 0
-    ? colors[activeColor].quantity
-    : quantity
+    colors.length > 0
+      ? colors[activeColor].quantity
+      : quantity
 
   return (
     <article
@@ -27,7 +27,7 @@ export default function ProductCard({
           Save {savePercent}%
         </span>
       )}
-      {savePercent === 0 && <span className="mb-3 h-[22px]"  />}
+      {savePercent === 0 && <span className="mb-3 h-[22px]" />}
 
       <div className="mb-4 flex flex-1 items-center justify-center px-2">
         <img src={image} alt={name} className="h-28 w-auto object-contain" />
@@ -44,8 +44,10 @@ export default function ProductCard({
       {colors.length > 0 && (
         <div className="mb-4 flex flex-wrap gap-2">
           {colors.map((color, colorIndex) => (
-            <span
+            <button
               key={color.label}
+              type="button"
+              onClick={() => changeActiveColor(id, colorIndex)}
               className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-medium ${colorIndex === activeColor
                 ? 'border-[#1a98ff] bg-[#1a98ff]/5 text-slate-800'
                 : 'border-slate-200 text-slate-600'
@@ -54,10 +56,10 @@ export default function ProductCard({
               <span
                 className="h-3 w-3 rounded-full border border-slate-300"
                 style={{ backgroundColor: color.hex }}
-                
+
               />
               {color.label}
-            </span>
+            </button>
           ))}
         </div>
       )}
@@ -65,14 +67,14 @@ export default function ProductCard({
       <div className="mt-auto flex items-center justify-between gap-2 border-t border-slate-100 pt-4">
         <div
           className="inline-flex items-center rounded-full border border-slate-200 bg-white"
-          
+
         >
           <button
             onClick={() => decreaseQuantity(id, activeColor)}
             disabled={currentQuantity === 0}
             className={`flex h-8 w-8 items-center justify-center ${currentQuantity === 0
-                ? 'cursor-not-allowed text-slate-300'
-                : 'text-slate-800'
+              ? 'cursor-not-allowed text-slate-300'
+              : 'text-slate-800'
               }`}
           >
             −
