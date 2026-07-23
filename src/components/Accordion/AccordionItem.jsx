@@ -16,7 +16,11 @@ export default function AccordionItem({
   const isOpen = openIndex === index
 
   const handleHeaderClick = () => {
-    setOpenIndex(index)
+    if (isOpen) {
+      setOpenIndex(null)
+    } else {
+      setOpenIndex(index)
+    }
   }
 
   const handleNextClick = () => {
@@ -32,9 +36,8 @@ export default function AccordionItem({
       <button
         type="button"
         onClick={handleHeaderClick}
-        className={`w-full px-6 py-4 text-left transition-colors ${
-          isOpen ? 'bg-[#f5f9fc]' : 'bg-white hover:bg-slate-50'
-        }`}
+        className={`w-full px-6 py-4 text-left transition-colors ${isOpen ? 'bg-[#f5f9fc]' : 'bg-white hover:bg-slate-50'
+          }`}
         aria-expanded={isOpen}
       >
         <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">
@@ -52,16 +55,19 @@ export default function AccordionItem({
             <span className="text-lg font-semibold text-slate-900">{title}</span>
           </div>
 
-          {isOpen && status ? (
-            <span className="text-sm font-medium text-[#1a98ff]">{status}</span>
-          ) : (
-            !isOpen && (
-              <HiChevronDown
-                className="h-5 w-5 shrink-0 text-slate-500"
-                aria-hidden
-              />
-            )
-          )}
+          <div className="flex items-center gap-3">
+            {isOpen && status && (
+              <span className="text-sm font-medium text-[#1a98ff]">
+                {status}
+              </span>
+            )}
+
+            <HiChevronDown
+              className={`h-5 w-5 shrink-0 text-slate-500 transition-transform ${isOpen ? 'rotate-180' : ''
+                }`}
+              aria-hidden
+            />
+          </div>
         </div>
       </button>
 
