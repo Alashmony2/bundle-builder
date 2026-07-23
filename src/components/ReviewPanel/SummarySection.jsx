@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import badge from '../../assets/Badge.png'
 import useBuilder from '../../hooks/useBuilder'
 
@@ -10,6 +11,7 @@ export default function SummarySection({
 }) {
 
   const { saveConfiguration } = useBuilder()
+  const [isCheckedOut, setIsCheckedOut] = useState(false)
 
   return (
     <aside className="flex w-full flex-col">
@@ -38,10 +40,17 @@ export default function SummarySection({
 
         <button
           type="button"
+          onClick={() => setIsCheckedOut(true)}
           className="w-full rounded-lg bg-[#5b31d1] py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#4c28b0]"
         >
           Checkout
         </button>
+
+        {isCheckedOut && (
+          <p className="text-center text-sm font-medium text-emerald-600">
+            ✅ Checkout completed successfully!
+          </p>
+        )}
 
         <button
           type="button"
