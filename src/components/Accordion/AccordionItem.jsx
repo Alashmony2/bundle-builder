@@ -65,7 +65,7 @@ export default function AccordionItem({
 
           <div className="flex items-center gap-3">
             {isOpen && status && (
-              <span className="text-sm font-medium text-[#1a98ff]">
+              <span className="text-sm font-medium text-[#4E2FD2]">
                 {status}
               </span>
             )}
@@ -88,7 +88,7 @@ export default function AccordionItem({
               <button
                 type="button"
                 onClick={handleNextClick}
-                className="rounded-full border-2 border-[#1a98ff] bg-white px-8 py-2.5 text-sm font-semibold text-[#1a98ff] transition-colors hover:bg-[#1a98ff]/5"
+                className="rounded-lg border-2 border-[#4E2FD2] bg-white px-8 py-2.5 text-sm font-semibold text-[#4E2FD2] transition-colors hover:bg-[#4E2FD2]/5"
               >
                 Next: {nextLabel}
               </button>

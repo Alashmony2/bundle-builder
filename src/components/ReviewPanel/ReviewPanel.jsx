@@ -94,9 +94,6 @@ export default function ReviewPanel() {
             financingLabel={REVIEW_SUMMARY.financingLabel}
             originalTotal={summary.originalTotal.toFixed(2)}
             total={summary.total.toFixed(2)}
-            savingsMessage={`Congrats! You're saving $${summary.savings.toFixed(
-              2
-            )} on your security bundle!`}
           />
         </div>
       </div>
