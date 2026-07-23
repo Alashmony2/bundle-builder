@@ -1,17 +1,15 @@
-import {
-  HiOutlineSignal,
-  HiOutlineServerStack,
-  HiOutlineCircleStack,
-  HiOutlineShieldCheck,
-  HiOutlineTruck,
-} from 'react-icons/hi2'
+import sensemotion from '../../assets/sensemotion.png'
+import sensehub from '../../assets/sensehub.png'
+import microsd from '../../assets/microsd.png'
+import unlimited from '../../assets/unlimited.png'
+import shipping from '../../assets/shipping.png'
 
 const ICON_MAP = {
-  motion: HiOutlineSignal,
-  hub: HiOutlineServerStack,
-  storage: HiOutlineCircleStack,
-  shield: HiOutlineShieldCheck,
-  shipping: HiOutlineTruck,
+  motion: sensemotion,
+  hub: sensehub,
+  storage: microsd,
+  shield: unlimited,
+  shipping: shipping,
 }
 
 export default function ReviewItemIcon({ icon, image, alt, variant = 'product' }) {
@@ -25,9 +23,9 @@ export default function ReviewItemIcon({ icon, image, alt, variant = 'product' }
     )
   }
 
-  const Icon = ICON_MAP[icon]
+  const iconImage = ICON_MAP[icon]
 
-  if (!Icon) {
+  if (!iconImage) {
     return (
       <span
         className="h-10 w-10 shrink-0 rounded-md bg-white"
@@ -36,13 +34,11 @@ export default function ReviewItemIcon({ icon, image, alt, variant = 'product' }
     )
   }
 
-  const iconColor = variant === 'shipping' ? 'text-emerald-500' : 'text-slate-600'
-
   return (
-    <span
-      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-white ${iconColor}`}
-    >
-      <Icon className="h-5 w-5" aria-hidden />
-    </span>
+    <img
+      src={iconImage}
+      alt={alt}
+      className="h-10 w-10 shrink-0 object-contain"
+    />
   )
 }

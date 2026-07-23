@@ -1,9 +1,7 @@
-import {
-  HiOutlineCamera,
-  HiOutlineShieldCheck,
-  HiOutlineSignal,
-  HiOutlinePlusCircle,
-} from 'react-icons/hi2'
+import { HiOutlineCamera } from 'react-icons/hi2'
+import logo from '../../assets/logoplan.png'
+import sensors from '../../assets/sensors.png'
+import protection from '../../assets/protection.png'
 import { Accordion, AccordionItem } from '../Accordion'
 import ProductCard from './ProductCard'
 import useBuilder from '../../hooks/useBuilder'
@@ -11,9 +9,9 @@ import { BUILDER_STEPS } from '../../data/builderData.js'
 
 const STEP_ICONS = [
   HiOutlineCamera,
-  HiOutlineShieldCheck,
-  HiOutlineSignal,
-  HiOutlinePlusCircle,
+  logo,
+  sensors,
+  protection,
 ]
 
 const PLACEHOLDER_CONTENT = [

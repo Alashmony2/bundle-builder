@@ -1,4 +1,4 @@
-import { HiChevronDown } from 'react-icons/hi2'
+import { TiArrowSortedDown } from "react-icons/ti";
 import { useAccordion } from './Accordion'
 
 export default function AccordionItem({
@@ -46,11 +46,19 @@ export default function AccordionItem({
 
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            {Icon && (
-              <Icon
-                className="h-6 w-6 shrink-0 text-slate-800"
-                aria-hidden
+            {typeof Icon === 'string' ? (
+              <img
+                src={Icon}
+                alt=""
+                className="h-6 w-6 shrink-0 object-contain"
               />
+            ) : (
+              Icon && (
+                <Icon
+                  className="h-6 w-6 shrink-0 text-slate-800"
+                  aria-hidden
+                />
+              )
             )}
             <span className="text-lg font-semibold text-slate-900">{title}</span>
           </div>
@@ -62,8 +70,8 @@ export default function AccordionItem({
               </span>
             )}
 
-            <HiChevronDown
-              className={`h-5 w-5 shrink-0 text-slate-500 transition-transform ${isOpen ? 'rotate-180' : ''
+            <TiArrowSortedDown
+              className={`h-5 w-5 shrink-0 text-[#4E2FD2] transition-transform ${isOpen ? 'rotate-180' : ''
                 }`}
               aria-hidden
             />
