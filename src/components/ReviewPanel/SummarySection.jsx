@@ -1,4 +1,5 @@
 import badge from '../../assets/Badge.png'
+import useBuilder from '../../hooks/useBuilder'
 
 export default function SummarySection({
   returnsText,
@@ -7,6 +8,9 @@ export default function SummarySection({
   total,
   savingsMessage,
 }) {
+
+  const { saveConfiguration } = useBuilder()
+
   return (
     <aside className="flex w-full flex-col">
       <div className="mb-6 flex items-start gap-4">
@@ -41,7 +45,8 @@ export default function SummarySection({
 
         <button
           type="button"
-          className="w-full text-center text-xs font-medium text-[#1a98ff] underline underline-offset-2"
+          onClick={saveConfiguration}
+          className="w-full text-center text-xs font-medium text-[#1a98ff] underline underline-offset-2 cursor-pointer"
         >
           Save my system for later
         </button>

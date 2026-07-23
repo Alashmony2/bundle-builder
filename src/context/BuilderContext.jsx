@@ -1,10 +1,16 @@
-import { createContext, useState } from 'react'
+import { createContext, useState, useEffect } from 'react'
 import { CAMERA_PRODUCTS } from './../data/builderData';
 
 export const BuilderContext = createContext()
 
 export default function BuilderProvider({ children }) {
-  const [products, setProducts] = useState(CAMERA_PRODUCTS)
+  const [products, setProducts] = useState(() => {
+    const savedProducts = localStorage.getItem('bundle-builder')
+
+    return savedProducts
+      ? JSON.parse(savedProducts)
+      : CAMERA_PRODUCTS
+  })
 
   const increaseQuantity = (id, colorIndex = null) => {
     setProducts((prev) =>
@@ -121,6 +127,14 @@ export default function BuilderProvider({ children }) {
 
   summary.savings = summary.originalTotal - summary.total
 
+  const saveConfiguration = () => {
+    localStorage.setItem(
+      'bundle-builder',
+      JSON.stringify(products)
+    )
+    alert('Your system has been saved!')
+  }
+
   const value = {
     products,
     increaseQuantity,
@@ -128,7 +142,8 @@ export default function BuilderProvider({ children }) {
     changeActiveColor,
     selectedCameraCount,
     summary,
-  }  
+    saveConfiguration,
+  }
 
   return (
     <BuilderContext.Provider value={value}>
